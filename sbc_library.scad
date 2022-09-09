@@ -315,6 +315,15 @@ module button(x,y,rotation,side,type,pcbsize_z) {
             color("black") translate([5,5,3.5]) sphere(d=1);
         }
     }
+    if(type=="momentary_4.6x2.4x2.9_90") {
+        size_x = 4.6;
+        size_y = 2.4;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([90, 0, 0]) union() {
+            color("silver") translate([0,0,0]) cube([size_x,size_y,2.9]);
+            color("black") translate([2.3,1.2,2.9]) cylinder(r=1.2,h=0.8,$fn=30);
+        }
+    }
     if(type=="momentary_4x2x1") {
         size_x = 4;
         size_y = 2;                
@@ -754,6 +763,40 @@ module video(x,y,rotation,side,type,pcbsize_z) {
                 color("silver") translate([0,-.2,0]) rotate ([-90,0,0]) 
                     cylinder(d=3, h=13.5,$fn=30);
                 color("silver") translate([14.5,-.2,0]) rotate ([-90,0,0]) 
+                    cylinder(d=3, h=13.5,$fn=30);
+                color("silver") translate([-3,-1,-3]) cube([3,13.5,7.5]);
+                color("silver") translate([14.5,-1,-3]) cube([3,13.5,7.5]);
+                color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
+                }
+            color("black") translate([2.5,.5,2.25]) cube([9.25,10.5,1.5]);
+            }
+    }
+    // hdmi a type vertical connector
+    if(type=="hdmi_a_vertical") {
+        size_x = 14.5;
+        size_y = 11.5;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([0,90,0])
+        translate([-14.5,0,0])
+        union() {
+            difference() {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 5.5]);
+                color("dimgray") translate([.5,-.1,.5]) cube([13.5, 11, 4.5]);
+                color("silver") translate([0,-.1,0]) rotate ([-90,0,0])
+                    cylinder(d=4, h=13.5,$fn=30);
+                color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0])
+                    cylinder(d=4, h=13.5,$fn=30);
+            }
+            difference() {
+                union() {
+                    color("silver") translate([0,-.1,0]) rotate ([-90,0,0])
+                    cylinder(d=4, h=11.5,$fn=30);
+                    color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0])
+                    cylinder(d=4, h=11.5,$fn=30);
+                }
+                color("silver") translate([0,-.2,0]) rotate ([-90,0,0])
+                    cylinder(d=3, h=13.5,$fn=30);
+                color("silver") translate([14.5,-.2,0]) rotate ([-90,0,0])
                     cylinder(d=3, h=13.5,$fn=30);
                 color("silver") translate([-3,-1,-3]) cube([3,13.5,7.5]);
                 color("silver") translate([14.5,-1,-3]) cube([3,13.5,7.5]);
@@ -1238,6 +1281,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
+    // ic 12mm x 17mm
+    if (type=="ic_12x17") {
+        size_x = 12;
+        size_y = 17;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }
     // ic 13mm x 8mm
     if (type=="ic_13x8") {
         size_x = 13;
@@ -1354,6 +1404,19 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 3.5]);
                 color("black") translate([.5,-.5,2]) cube([10.5, 5.5, 1]);
+            }
+        }
+    }
+
+    // radxa sdcard
+    if(type == "sdcard_radxa") {
+        size_x = 10.25;
+        size_y = 6.3;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 2]);
+                color("black") translate([.5,-.5,.5]) cube([9.25, 5.5, 1]);
             }
         }
     }
